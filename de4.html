@@ -33,12 +33,26 @@
         .option-label:hover { background-color: #f7f9fa; }
         .option-label input { margin-right: 10px; transform: scale(1.2); }
 
-        /* True/False Table */
-        .tf-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .tf-table th, .tf-table td { border: 1px solid #ecf0f1; padding: 12px; }
-        .tf-table th { background-color: #f9f9f9; text-align: center; width: 15%; }
-        .tf-check { text-align: center; }
-        .tf-check input { transform: scale(1.3); cursor: pointer; }
+        /* --- SỬA LỖI BẢNG ĐÚNG SAI TẠI ĐÂY --- */
+        .tf-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .tf-table th, .tf-table td { border: 1px solid #bdc3c7; padding: 12px; vertical-align: middle; }
+        
+        /* Cột nội dung rộng hơn */
+        .tf-table td:first-child { width: 70%; text-align: left; }
+        
+        /* Cột Đúng/Sai căn giữa và có kích thước cố định */
+        .tf-table th:not(:first-child), 
+        .tf-table td:not(:first-child) { 
+            width: 15%; 
+            text-align: center; 
+            background-color: #fafafa;
+        }
+        
+        /* Header màu khác biệt */
+        .tf-table th { background-color: #e9ecef; font-weight: bold; }
+        
+        /* Nút radio to hơn để dễ bấm */
+        .tf-radio { transform: scale(1.5); cursor: pointer; accent-color: var(--primary); }
 
         /* Short Answer */
         .input-short { width: 100%; max-width: 300px; padding: 10px; border: 2px solid #bdc3c7; border-radius: 5px; font-size: 1rem; }
@@ -146,7 +160,7 @@
         </div>
 
         <div class="question-box" id="q7">
-            <span class="q-content">Câu 7: Hàm số \(y = f(x)\) có đồ thị như hình bên (giả sử bị đứt đoạn tại \(x=1\)). Khẳng định nào đúng?</span>
+            <span class="q-content">Câu 7: Hàm số \(y = f(x)\) có đồ thị bị đứt đoạn tại \(x=1\). Khẳng định nào đúng?</span>
             <div class="options-list">
                 <label class="option-label"><input type="radio" name="q7" value="A"> A. Hàm số liên tục tại \(x=1\).</label>
                 <label class="option-label"><input type="radio" name="q7" value="B"> B. Hàm số gián đoạn tại \(x=1\).</label>
@@ -194,27 +208,33 @@
         <div class="question-box" id="tf1">
             <span class="q-content">Câu 1: Cho phương trình \(\sin 2x = 1\).</span>
             <table class="tf-table">
-                <thead><tr><th>Nội dung</th><th>Đúng</th><th>Sai</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Nội dung</th>
+                        <th>Đúng</th>
+                        <th>Sai</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr data-ans="T">
                         <td>a) Tập xác định của phương trình là \(\mathbb{R}\).</td>
-                        <td class="tf-check"><input type="radio" name="tf1a" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf1a" value="F"></td>
+                        <td class="tf-check"><input type="radio" name="tf1a" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf1a" value="F" class="tf-radio"></td>
                     </tr>
                     <tr data-ans="T">
                         <td>b) Phương trình tương đương với \(\sin 2x = \sin \frac{\pi}{2}\).</td>
-                        <td class="tf-check"><input type="radio" name="tf1b" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf1b" value="F"></td>
+                        <td class="tf-check"><input type="radio" name="tf1b" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf1b" value="F" class="tf-radio"></td>
                     </tr>
                     <tr data-ans="T">
                         <td>c) Một nghiệm của phương trình là \(x = \frac{\pi}{4}\).</td>
-                        <td class="tf-check"><input type="radio" name="tf1c" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf1c" value="F"></td>
+                        <td class="tf-check"><input type="radio" name="tf1c" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf1c" value="F" class="tf-radio"></td>
                     </tr>
                     <tr data-ans="F">
                         <td>d) Phương trình có 2 nghiệm phân biệt trong khoảng \((0; \pi)\).</td>
-                        <td class="tf-check"><input type="radio" name="tf1d" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf1d" value="F"></td>
+                        <td class="tf-check"><input type="radio" name="tf1d" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf1d" value="F" class="tf-radio"></td>
                     </tr>
                 </tbody>
             </table>
@@ -224,29 +244,35 @@
         </div>
 
         <div class="question-box" id="tf2">
-            <span class="q-content">Câu 2: Phí gửi xe tại một bãi xe được tính như sau: 15 nghìn đồng cho 2 giờ đầu tiên. Nếu quá 2 giờ, mỗi giờ tiếp theo tính thêm 5 nghìn đồng. Gọi \(C(x)\) là số tiền phải trả khi gửi \(x\) giờ.</span>
+            <span class="q-content">Câu 2: Phí gửi xe: 15 nghìn/2 giờ đầu. Quá 2 giờ, mỗi giờ thêm 5 nghìn. Gọi \(C(x)\) là phí gửi \(x\) giờ.</span>
             <table class="tf-table">
-                <thead><tr><th>Nội dung</th><th>Đúng</th><th>Sai</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Nội dung</th>
+                        <th>Đúng</th>
+                        <th>Sai</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr data-ans="T">
                         <td>a) Hàm số chi phí là \(C(x) = \begin{cases} 15 & 0 < x \le 2 \\ 15 + 5(x-2) & x > 2 \end{cases}\).</td>
-                        <td class="tf-check"><input type="radio" name="tf2a" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf2a" value="F"></td>
+                        <td class="tf-check"><input type="radio" name="tf2a" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf2a" value="F" class="tf-radio"></td>
                     </tr>
                     <tr data-ans="F">
                         <td>b) Nếu gửi 4 giờ thì số tiền phải trả là 35 nghìn đồng.</td>
-                        <td class="tf-check"><input type="radio" name="tf2b" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf2b" value="F"></td>
+                        <td class="tf-check"><input type="radio" name="tf2b" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf2b" value="F" class="tf-radio"></td>
                     </tr>
                     <tr data-ans="T">
                         <td>c) \(\lim_{x \to 2^+} C(x) = 15\).</td>
-                        <td class="tf-check"><input type="radio" name="tf2c" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf2c" value="F"></td>
+                        <td class="tf-check"><input type="radio" name="tf2c" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf2c" value="F" class="tf-radio"></td>
                     </tr>
                     <tr data-ans="T">
                         <td>d) Hàm số liên tục tại điểm \(x = 2\).</td>
-                        <td class="tf-check"><input type="radio" name="tf2d" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf2d" value="F"></td>
+                        <td class="tf-check"><input type="radio" name="tf2d" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf2d" value="F" class="tf-radio"></td>
                     </tr>
                 </tbody>
             </table>
@@ -258,27 +284,33 @@
         <div class="question-box" id="tf3">
             <span class="q-content">Câu 3: Cho đường thẳng \(d\) song song với mặt phẳng \((P)\).</span>
             <table class="tf-table">
-                <thead><tr><th>Nội dung</th><th>Đúng</th><th>Sai</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Nội dung</th>
+                        <th>Đúng</th>
+                        <th>Sai</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr data-ans="T">
                         <td>a) Đường thẳng \(d\) và mặt phẳng \((P)\) không có điểm chung.</td>
-                        <td class="tf-check"><input type="radio" name="tf3a" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf3a" value="F"></td>
+                        <td class="tf-check"><input type="radio" name="tf3a" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf3a" value="F" class="tf-radio"></td>
                     </tr>
                     <tr data-ans="F">
                         <td>b) Mọi đường thẳng nằm trong \((P)\) đều song song với \(d\).</td>
-                        <td class="tf-check"><input type="radio" name="tf3b" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf3b" value="F"></td>
+                        <td class="tf-check"><input type="radio" name="tf3b" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf3b" value="F" class="tf-radio"></td>
                     </tr>
                     <tr data-ans="T">
                         <td>c) Tồn tại vô số đường thẳng trong \((P)\) song song với \(d\).</td>
-                        <td class="tf-check"><input type="radio" name="tf3c" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf3c" value="F"></td>
+                        <td class="tf-check"><input type="radio" name="tf3c" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf3c" value="F" class="tf-radio"></td>
                     </tr>
                     <tr data-ans="T">
-                        <td>d) Nếu mặt phẳng \((Q)\) chứa \(d\) và cắt \((P)\) theo giao tuyến \(\Delta\) thì \(\Delta // d\).</td>
-                        <td class="tf-check"><input type="radio" name="tf3d" value="T"></td>
-                        <td class="tf-check"><input type="radio" name="tf3d" value="F"></td>
+                        <td>d) Nếu \((Q)\) chứa \(d\) và cắt \((P)\) theo giao tuyến \(\Delta\) thì \(\Delta // d\).</td>
+                        <td class="tf-check"><input type="radio" name="tf3d" value="T" class="tf-radio"></td>
+                        <td class="tf-check"><input type="radio" name="tf3d" value="F" class="tf-radio"></td>
                     </tr>
                 </tbody>
             </table>
@@ -290,7 +322,7 @@
         <div class="section-title">PHẦN III: TRẢ LỜI NGẮN (3.0 điểm)</div>
 
         <div class="question-box" id="sa1">
-            <span class="q-content">Câu 1: Một tờ giấy có độ dày 0,1 mm. Giả sử ta có thể gấp đôi tờ giấy liên tục. Hỏi sau 10 lần gấp, độ dày của tập giấy là bao nhiêu mm?</span>
+            <span class="q-content">Câu 1: Một tờ giấy có độ dày 0,1 mm. Hỏi sau 10 lần gấp đôi, độ dày của tập giấy là bao nhiêu mm?</span>
             <input type="number" step="0.1" class="input-short" id="input_sa1" placeholder="Nhập kết quả...">
             <div class="feedback"><b>Đáp án: 102.4</b>. <br> Cấp số nhân \(u_1 = 0.1\times 2\) (sau 1 lần gấp), \(u_{10} = 0.1 \times 2^{10} = 0.1 \times 1024 = 102.4\) mm.</div>
         </div>
@@ -302,7 +334,7 @@
         </div>
 
         <div class="question-box" id="sa3">
-            <span class="q-content">Câu 3: Ba mặt phẳng song song cắt hai đường thẳng chéo nhau \(a, b\) lần lượt tại \(A,B,C\) và \(A',B',C'\). Biết \(AB = 2\) cm, \(BC = 4\) cm và \(A'B' = 3\) cm. Tính độ dài \(B'C'\) (cm).</span>
+            <span class="q-content">Câu 3: Ba mặt phẳng song song cắt hai đường thẳng chéo nhau \(a, b\) lần lượt tại \(A,B,C\) và \(A',B',C'\). Biết \(AB = 2, BC = 4, A'B' = 3\). Tính \(B'C'\).</span>
             <input type="number" class="input-short" id="input_sa3" placeholder="Nhập độ dài...">
             <div class="feedback"><b>Đáp án: 6</b>. <br> Theo định lý Thales trong không gian: \(\frac{AB}{BC} = \frac{A'B'}{B'C'} \Rightarrow \frac{2}{4} = \frac{3}{x} \Rightarrow x = 6\).</div>
         </div>
@@ -332,7 +364,7 @@
         clearInterval(interval);
         let score = 0;
 
-        // 1. Chấm Trắc nghiệm (10 câu x 0.3đ = 3.0đ)
+        // 1. Chấm Trắc nghiệm
         const keyMCQ = { q1:'D', q2:'A', q3:'B', q4:'B', q5:'A', q6:'C', q7:'B', q8:'C', q9:'A', q10:'A' };
         
         for (let q in keyMCQ) {
@@ -351,8 +383,7 @@
             }
         }
 
-        // 2. Chấm Đúng/Sai (3 câu x ~1.33đ = 4.0đ)
-        // Mỗi ý nhỏ tính 0.333đ
+        // 2. Chấm Đúng/Sai
         const keyTF = {
             tf1: ['T', 'T', 'T', 'F'],
             tf2: ['T', 'F', 'T', 'T'],
@@ -371,6 +402,8 @@
                 const correctVal = keyTF[id][idx];
                 
                 let userVal = t ? 'T' : (f ? 'F' : '');
+                
+                // Tô màu background
                 if(userVal === correctVal) {
                     correctCount++;
                     row.style.backgroundColor = "#d5f5e3";
@@ -381,7 +414,7 @@
             score += correctCount * (4.0 / 12.0);
         }
 
-        // 3. Chấm Trả lời ngắn (3 câu x 1.0đ = 3.0đ)
+        // 3. Chấm Trả lời ngắn
         const keySA = {
             input_sa1: 102.4,
             input_sa2: 0.5,
