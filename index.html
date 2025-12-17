@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đề Kiểm Tra Toán 11 - Đề Số 3</title>
+    <title>Đề Kiểm Tra Toán 11 - Đề Số 3 (Đã sửa giao diện)</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -34,13 +34,32 @@
         .mcq-opt:hover { background-color: #e9ecef; }
         .mcq-opt input { margin-right: 12px; transform: scale(1.2); }
 
-        /* True/False Table */
-        .tf-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .tf-table th, .tf-table td { border: 1px solid #dee2e6; padding: 12px; }
-        .tf-table th { background-color: #f8f9fa; text-align: center; width: 15%; }
-        .tf-table td:first-child { width: 70%; font-weight: 500; }
-        .tf-check { display: flex; justify-content: center; }
-        .tf-check input { transform: scale(1.3); cursor: pointer; }
+        /* --- SỬA CSS BẢNG ĐÚNG SAI TẠI ĐÂY --- */
+        .tf-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .tf-table th, .tf-table td { border: 1px solid #dee2e6; padding: 12px; vertical-align: middle; }
+        
+        /* Định dạng Header */
+        .tf-table th { background-color: #e9ecef; font-weight: bold; text-align: center; }
+
+        /* Cột nội dung rộng 70% */
+        .tf-table td:first-child, .tf-table th:first-child { width: 70%; text-align: left; }
+
+        /* Cột Đúng/Sai rộng 15% mỗi cột và căn giữa */
+        .tf-table td:not(:first-child), .tf-table th:not(:first-child) { 
+            width: 15%; 
+            text-align: center; 
+            background-color: #fafafa; /* Màu nền nhẹ để phân biệt */
+        }
+
+        /* Style cho ô chứa nút radio */
+        .tf-check { display: block; text-align: center; margin: 0 auto; }
+        .tf-check input { 
+            transform: scale(1.5); /* Phóng to nút */
+            cursor: pointer; 
+            margin: 0;
+            vertical-align: middle;
+            accent-color: var(--primary); /* Màu xanh khi chọn */
+        }
 
         /* Short Answer Input */
         .sa-input { width: 100%; max-width: 250px; padding: 10px; border: 2px solid #ced4da; border-radius: 5px; font-size: 1rem; transition: border-color 0.3s; }
@@ -361,7 +380,6 @@
         }
 
         // 2. TRUE/FALSE (Total 4.0đ -> ~1.33đ / câu lớn)
-        // Cách tính điểm đơn giản: Mỗi ý nhỏ đúng được 0.33đ.
         const keyTF = {
             tf1: ['T', 'F', 'T', 'F'],
             tf2: ['T', 'T', 'F', 'T'],
@@ -377,7 +395,7 @@
             rows.forEach((row, index) => {
                 const userT = row.querySelector('input[value="T"]').checked;
                 const userF = row.querySelector('input[value="F"]').checked;
-                const correctVal = keyTF[qID][index]; // 'T' or 'F'
+                const correctVal = keyTF[qID][index];
 
                 let userVal = userT ? 'T' : (userF ? 'F' : null);
                 
@@ -389,7 +407,6 @@
                 }
             });
 
-            // Cộng điểm: (4 điểm tổng / 12 ý nhỏ) ~ 0.333 điểm mỗi ý
             score += correctCount * (4.0 / 12.0);
         }
 
@@ -408,7 +425,6 @@
             
             let val = parseFloat(input.value);
             
-            // Chấp nhận sai số nhỏ
             if (Math.abs(val - keySA[id]) < 0.1) {
                 score += 1.0;
                 div.style.borderLeft = "5px solid var(--success)";
